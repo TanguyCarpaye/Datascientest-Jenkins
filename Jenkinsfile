@@ -54,6 +54,8 @@ pipeline {
                 mv nginx-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-service.yaml
                 mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-cast-persistentvolumeclaim.yaml
                 mv postgres-data-movie-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-movie-persistentvolumeclaim.yaml
+                sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
+                sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
                 """
             }
         }
