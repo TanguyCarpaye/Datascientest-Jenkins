@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_COMPOSE_VERSION = '1.29.2'
-        KUBE_CONFIG = '/path/to/your/kubeconfig'
+        KUBE_CONFIG = '/home/ubuntu/.kube/config'
     }
 
     stages {
