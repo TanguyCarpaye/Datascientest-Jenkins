@@ -36,19 +36,32 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                // Modifier 'dev', 'qa', 'staging', 'prod' selon vos namespaces
+        stage('Move Kubernetes Configs') {
+        steps {
+            script {
+                sh """
+                mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
+                mv *-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
+                mv *-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
+                mv *-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
+                mv *-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
+                """
+            }
+        }
+    }
+
+    stage('Deploy to Kubernetes with Helm') {
+        steps {
+            script {
                 def environments = ['dev', 'qa', 'staging', 'prod']
                 environments.each {
                     env -> 
                     sh """
-                    kubectl apply -f ./output/ --namespace=${env}
+                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
                     """
-                    }
                 }
             }
+        }
         }
     }
 }
