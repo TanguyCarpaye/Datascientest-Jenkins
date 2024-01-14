@@ -41,9 +41,19 @@ pipeline {
             script {
                 sh """
                 mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
-                mv *-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
-                mv *-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
-                mv *-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
+                mv cast-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
+                mv cast-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-claim0-persistentvolumeclaim.yaml
+                mv cast-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
+                mv cast_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-service.yaml
+                mv movie-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-db-deployment.yaml
+                mv movie-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-claim0-persistentvolumeclaim.yaml
+                mv movie-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-deployment.yaml
+                mv movie_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-service.yaml
+                mv nginx-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-claim0-persistentvolumeclaim.yaml
+                mv nginx-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-deployment.yaml
+                mv nginx-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-service.yaml
+                mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-cast-persistentvolumeclaim.yaml
+                mv postgres-data-movie-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-movie-persistentvolumeclaim.yaml
                 """
             }
         }
