@@ -18,6 +18,8 @@ services:
     image: postgres:12.1-alpine
     volumes:
       - postgres_data_movie:/var/lib/postgresql/data/
+    ports:
+      - 8003:8000
     environment:
       - POSTGRES_USER=movie_db_username
       - POSTGRES_PASSWORD=movie_db_password
@@ -39,6 +41,8 @@ services:
     image: postgres:12.1-alpine
     volumes:
       - postgres_data_cast:/var/lib/postgresql/data/
+    ports:
+      - 8004:8000
     environment:
       - POSTGRES_USER=cast_db_username
       - POSTGRES_PASSWORD=cast_db_password
