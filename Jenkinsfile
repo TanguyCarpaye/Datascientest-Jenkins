@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    if ! [ -x "$(command -v docker-compose)" ]; then
+                    if ! [ -x \$(command -v docker-compose) ]; then
                         mkdir -p \$HOME/bin
                         curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-\$(uname -s)-\$(uname -m)" -o \$HOME/bin/docker-compose
                         chmod +x \$HOME/bin/docker-compose
@@ -31,7 +31,6 @@ pipeline {
         stage('Convert Docker Compose to Kubernetes Configs') {
             steps {
                 script {
-                    // Assurez-vous que Kompose est installé
                     sh 'kompose convert -f docker-compose.yml'
                 }
             }
