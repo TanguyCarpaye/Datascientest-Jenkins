@@ -61,6 +61,22 @@ pipeline {
         }
     }
 
+    stage('Test Kubectl Connectivity') {
+    steps {
+        script {
+            sh 'kubectl cluster-info'
+            }
+        }
+    }
+
+    stage('Test Helm Connectivity') {
+    steps {
+        script {
+            sh 'helm version'
+            }
+        }
+    }
+    
     stage('Deploy to Kubernetes with Helm') {
         steps {
             script {
