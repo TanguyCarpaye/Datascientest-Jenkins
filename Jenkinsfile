@@ -44,7 +44,6 @@ pipeline {
                 mv *-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
                 mv *-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
                 mv *-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
-                mv *-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/
                 """
             }
         }
