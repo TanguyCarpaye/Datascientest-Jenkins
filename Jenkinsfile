@@ -39,13 +39,13 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Modifier 'dev', 'qa', 'staging', 'prod' selon vos namespaces
-                    def environments = ['dev', 'qa', 'staging', 'prod']
-                    environments.each {
-                        env -> 
-                        sh """
-                        kubectl apply -f <your-kubernetes-configs-directory> --namespace=${env}
-                        """
+                // Modifier 'dev', 'qa', 'staging', 'prod' selon vos namespaces
+                def environments = ['dev', 'qa', 'staging', 'prod']
+                environments.each {
+                    env -> 
+                    sh """
+                    kubectl apply -f ./output/ --namespace=${env}
+                    """
                     }
                 }
             }
