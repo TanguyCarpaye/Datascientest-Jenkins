@@ -21,10 +21,34 @@ pipeline {
             }
         }
 
-        stage('Building and Running Docker Compose') {
+        stage('Deploy to Dev') {
             steps {
                 script {
-                    sh '/var/lib/jenkins/bin/docker-compose up -d'
+                    sh '/var/lib/jenkins/bin/docker-compose -f docker-compose-dev.yml up -d'
+                }
+            }
+        }
+
+        stage('Deploy to QA') {
+            steps {
+                script {
+                    sh '/var/lib/jenkins/bin/docker-compose -f docker-compose-qa.yml up -d'
+                }
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    sh '/var/lib/jenkins/bin/docker-compose -f docker-compose-staging.yml up -d'
+                }
+            }
+        }
+
+        stage('Deploy to Prod') {
+            steps {
+                script {
+                    sh '/var/lib/jenkins/bin/docker-compose -f docker-compose-prod.yml up -d'
                 }
             }
         }
