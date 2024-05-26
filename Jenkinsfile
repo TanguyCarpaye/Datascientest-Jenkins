@@ -81,7 +81,7 @@ pipeline {
     steps {
         script {
             sh '
-#            kubectl config use-context default
+            kubectl config use-context default
             '
             }
         }
@@ -94,7 +94,7 @@ pipeline {
                 environments.each {
                     env -> 
                     sh """
-#                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
+                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
                     """
                 }
             }
