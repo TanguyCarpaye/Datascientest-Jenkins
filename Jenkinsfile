@@ -80,7 +80,7 @@ pipeline {
     stage('Set Kubectl Context') {
     steps {
         script {
-            sh 'sudo kubectl config use-context default'
+            sh 'kubectl config use-context default'
             }
         }
     }
