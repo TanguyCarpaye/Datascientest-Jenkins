@@ -68,7 +68,7 @@ pipeline {
             sh 'kubectl get nodes'
             sh 'kubectl cluster-info'
             sh 'kubectl cluster-info dump'
-            sh 'touch test.txt"
+            sh 'touch test.txt'
             }
         }
     }
