@@ -62,7 +62,7 @@ pipeline {
         }
     }
 
-    stage('Correction de l'orthographe des fichiers') {
+    stage('Correction de l orthographe des fichiers') {
     steps {
         script {
             sh 'ls'
