@@ -133,38 +133,38 @@ pipeline {
 //            }
 //        }
         
-//    stage('Create Helm Chart') {
-//    steps {
-//        script {
-//            sh """
-//            # Création d'un nouveau chart Helm pour l'application
-//            helm create my-application
-//            # Copie des configurations Kubernetes dans le dossier templates du chart Helm
-//            cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
-//            """
-//            }
-//        }
-//    }
+    stage('Create Helm Chart') {
+    steps {
+        script {
+            sh """
+            # Création d'un nouveau chart Helm pour l'application
+            helm create my-application
+            # Copie des configurations Kubernetes dans le dossier templates du chart Helm
+            cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
+            """
+            }
+        }
+    }
 
-//    stage('Deploy with Helm') {
-//    environment
-//        {
-//        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-//        }
-//    steps {
-//        script {
-//            sh """
-//            rm -Rf .kube
-//            mkdir .kube
-//            ls
-//            find . -depth -name "*_*" -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/_/-/g")"' _ {} \;
-//            cat $KUBECONFIG > .kube/config
-//            # Déploiement de l'application en utilisant Helm
-//            helm upgrade --install my-release my-application --namespace dev
-//            """
-//            }
-//        }
-//    }
+    stage('Deploy with Helm') {
+    environment
+        {
+        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+        }
+    steps {
+        script {
+            sh """
+            rm -Rf .kube
+            mkdir .kube
+            ls
+            find . -depth -name "*_*" -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/_/-/g")"' _ {} \;
+            cat $KUBECONFIG > .kube/config
+            # Déploiement de l'application en utilisant Helm
+            helm upgrade --install my-release my-application --namespace dev
+            """
+            }
+        }
+    }
         
     }
 }
