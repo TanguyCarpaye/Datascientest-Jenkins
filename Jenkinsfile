@@ -76,6 +76,14 @@ pipeline {
             }
         }
     }
+
+    stage('Set Kubectl Context') {
+    steps {
+        script {
+            sh 'kubectl config use-context default'
+            }
+        }
+    }
     
     stage('Deploy to Kubernetes with Helm') {
         steps {
