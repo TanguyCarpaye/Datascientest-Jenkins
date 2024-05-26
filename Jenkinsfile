@@ -69,27 +69,46 @@ pipeline {
             }
         }
     }
-    stage('Set Kubectl Context') {
-    steps {
-        script {
-            sh 'sudo kubectl config use-context default'
-            sh 'kubectl config use-context default'
-            }
-        }
-    }
+//    stage('Set Kubectl Context') {
+
+//    steps {
+
+//        script {
+
+//            sh 'sudo kubectl config use-context default'
+
+//            sh 'kubectl config use-context default'
+
+//            }
+
+//        }
+
+//    }
     
-    stage('Deploy to Kubernetes with Helm') {
-        steps {
-            script {
-                def environments = ['dev', 'qa', 'staging', 'prod']
-                environments.each {
-                    env -> 
-                    sh """
-                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
-                    """
-                }
-            }
-        }
+
+//    stage('Deploy to Kubernetes with Helm') {
+
+//        steps {
+
+//            script {
+
+//                def environments = ['dev', 'qa', 'staging', 'prod']
+
+//                environments.each {
+
+//                    env -> 
+
+//                    sh """
+
+//                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
+
+//                    """
+
+//                }
+
+//            }
+
+//        }
         }
     }
 }
