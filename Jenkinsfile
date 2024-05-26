@@ -61,6 +61,19 @@ pipeline {
             }
         }
     }
+
+    stage('Correction de l'orthographe des fichiers') {
+    steps {
+        script {
+            sh 'ls'
+            sh 'mv cast_db-service.yaml cast-db-service.yaml'
+            sh 'mv movie_db-service.yaml movie-db-service.yaml'
+            sh 'mv nginx_config.conf nginx-config.conf'
+            sh 'ls'
+            }
+        }
+    }
+        
     stage('Test Kubectl Connectivity') {
     steps {
         script {
