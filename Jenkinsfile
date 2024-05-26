@@ -82,39 +82,47 @@ pipeline {
             }
         }
     }
-//    stage('Set Kubectl Context') {
 
-//    steps {
-
-//        script {
-
-//            sh 'sudo kubectl config use-context default'
-
-//            sh 'kubectl config use-context default'
-
+    
+//    stage('Deploy to Kubernetes with Helm') {
+//        environment
+//        {
+//        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+//        }
+//        steps {
+//            script {
+//                def environments = ['dev', 'qa', 'staging', 'prod']
+//                environments.each {
+//                    env -> 
+//                    sh """
+//                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
+//                    """
+//                }
 //            }
-
+//        }
 //        }
 
-//    }
-    
-    stage('Deploy to Kubernetes with Helm') {
+        
+    stage('Deploiement en dev'){
         environment
         {
         KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
         }
-        steps {
-            script {
-                def environments = ['dev', 'qa', 'staging', 'prod']
-                environments.each {
-                    env -> 
-                    sh """
-                    helm upgrade --install my-application-release /home/ubuntu/manifestsKubernetes/my-application --namespace=${env}
-                    """
+            steps {
+                script {
+                sh '''
+                rm -Rf .kube
+                mkdir .kube
+                ls
+                cat $KUBECONFIG > .kube/config
+                cp fastapi/values.yaml values.yml
+                cat values.yml
+                sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
+                helm upgrade --install app fastapi --values=values.yml --namespace dev
+                '''
                 }
             }
         }
-
-        }
+        
     }
 }
