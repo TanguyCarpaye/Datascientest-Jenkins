@@ -103,26 +103,52 @@ pipeline {
 //        }
 
         
-    stage('Deploiement en dev'){
-        environment
-        {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-        }
-            steps {
-                script {
-                sh '''
-                rm -Rf .kube
-                mkdir .kube
-                ls
-                cat $KUBECONFIG > .kube/config
-                cp fastapi/values.yaml values.yml
-                cat values.yml
-                sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
-                helm upgrade --install app fastapi --values=values.yml --namespace dev
-                '''
-                }
+//    stage('Deploiement en dev'){
+//        environment
+//        {
+//        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+//        }
+//            steps {
+//                script {
+//                sh '''
+//                rm -Rf .kube
+//                mkdir .kube
+//                ls
+//                cat $KUBECONFIG > .kube/config
+//                cp fastapi/values.yaml values.yml
+//                cat values.yml
+//                sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
+//                helm upgrade --install app fastapi --values=values.yml --namespace dev
+//                '''
+//                }
+//            }
+//        }
+
+        
+    stage('Create Helm Chart') {
+    steps {
+        script {
+            sh """
+            # Création d'un nouveau chart Helm pour l'application
+            helm create my-application
+            # Copie des configurations Kubernetes dans le dossier templates du chart Helm
+            cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
+            """
             }
         }
+    }
+
+    stage('Deploy with Helm') {
+    steps {
+        script {
+            sh """
+            # Déploiement de l'application en utilisant Helm
+            helm upgrade --install my-release my-application --namespace dev
+            """
+            }
+        }
+    }
+
         
     }
 }
