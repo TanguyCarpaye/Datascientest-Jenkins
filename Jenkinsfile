@@ -148,14 +148,13 @@ pipeline {
 
     stage('Deploy with Helm') {
     environment {
-        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
-        }
+        KUBECONFIG = credentials("config") // we retrieve kubeconfig from secret file called config saved on jenkins
+    }
     steps {
         script {
             sh """
             rm -Rf .kube
             mkdir .kube
-            ls
             find . -depth -name "*_*" -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/_/-/g")"' _ {} \;
             cat $KUBECONFIG > .kube/config
             # Déploiement de l'application en utilisant Helm
@@ -164,6 +163,7 @@ pipeline {
             }
         }
     }
+
         
     }
 }
