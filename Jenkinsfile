@@ -40,7 +40,7 @@ pipeline {
         steps {
             script {
                 sh """
-                mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
+                sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
                 mv cast-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
                 mv cast-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-claim0-persistentvolumeclaim.yaml
                 mv cast-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
