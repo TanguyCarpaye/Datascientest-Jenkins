@@ -142,6 +142,7 @@ pipeline {
             # Copie des configurations Kubernetes dans le dossier templates du chart Helm
             cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
             """
+            sh 'ls'
             }
         }
     }
