@@ -99,6 +99,10 @@ pipeline {
 //    }
     
     stage('Deploy to Kubernetes with Helm') {
+        environment
+        {
+        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+        }
         steps {
             script {
                 def environments = ['dev', 'qa', 'staging', 'prod']
