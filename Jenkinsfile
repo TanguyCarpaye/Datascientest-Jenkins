@@ -139,9 +139,17 @@ pipeline {
     }
 
     stage('Deploy with Helm') {
+    environment
+        {
+        KUBECONFIG = credentials("config") // we retrieve  kubeconfig from secret file called config saved on jenkins
+        }
     steps {
         script {
             sh """
+            rm -Rf .kube
+            mkdir .kube
+            ls
+            cat $KUBECONFIG > .kube/config
             # Déploiement de l'application en utilisant Helm
             helm upgrade --install my-release my-application --namespace dev
             """
