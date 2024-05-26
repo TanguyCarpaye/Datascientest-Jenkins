@@ -68,6 +68,7 @@ pipeline {
             sh 'kubectl get nodes'
             sh 'kubectl cluster-info'
             sh 'kubectl cluster-info dump'
+            sh 'touch test.txt"
             }
         }
     }
@@ -75,6 +76,7 @@ pipeline {
     steps {
         script {
             sh 'helm version'
+            sh 'ls'
             }
         }
     }
