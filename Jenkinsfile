@@ -68,6 +68,8 @@ pipeline {
     stage('Test Kubectl Connectivity') {
     steps {
         script {
+            sh 'kubectl version'
+            sh 'kubectl get nodes'
             sh 'kubectl cluster-info'
             }
         }
