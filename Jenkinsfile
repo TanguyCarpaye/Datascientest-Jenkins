@@ -71,6 +71,7 @@ pipeline {
             sh 'kubectl version'
             sh 'kubectl get nodes'
             sh 'kubectl cluster-info'
+            sh 'kubectl cluster-info dump'
             }
         }
     }
