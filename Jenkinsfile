@@ -131,9 +131,6 @@ pipeline {
             sh """
             # Création d'un nouveau chart Helm pour l'application
             helm create my-application
-            find . -type f -name "*_*" | while read fname; do
-              mv "$fname" "$(echo $fname | sed 's/_/-/g')"
-            done
             # Copie des configurations Kubernetes dans le dossier templates du chart Helm
             cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
             """
