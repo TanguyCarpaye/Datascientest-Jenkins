@@ -35,26 +35,32 @@ pipeline {
         steps {
             script {
                 sh """
-                sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
+                # Création des répertoires pour les microservices et les composants
                 sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates/cast
                 sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates/movie
                 sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates/nginx
-                sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates/postgress
-                sudo mv cast-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-db-deployment.yaml
+                sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates/postgres
+
+                # Déplacement des fichiers pour le microservice "Cast"
                 sudo mv cast-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-service-claim0-persistentvolumeclaim.yaml
                 sudo mv cast-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-service-deployment.yaml
                 sudo mv cast_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-service-service.yaml
                 sudo sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-db-deployment.yaml
                 sudo sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast/cast-service-deployment.yaml
+
+                # Déplacement des fichiers pour le microservice "Movie"
                 sudo mv movie-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie/movie-db-deployment.yaml
                 sudo mv movie-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie/movie-service-claim0-persistentvolumeclaim.yaml
                 sudo mv movie-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie/movie-service-deployment.yaml
                 sudo mv movie_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie/movie-service-service.yaml
+
+                # Déplacement des fichiers pour Nginx
                 sudo mv nginx-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx/nginx-claim0-persistentvolumeclaim.yaml
                 sudo mv nginx-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx/nginx-deployment.yaml
                 sudo mv nginx-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx/nginx-service.yaml
+
+                # Déplacement des fichiers pour les données PostgreSQL
                 sudo mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres/postgres-data-cast-persistentvolumeclaim.yaml
-                sudo mv postgres-data-movie-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres/postgres-data-movie-persistentvolumeclaim.yaml
                 """
             }
         }
