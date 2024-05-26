@@ -41,21 +41,21 @@ pipeline {
             script {
                 sh """
                 sudo mkdir -p /home/ubuntu/manifestsKubernetes/my-application/templates
-                mv cast-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
-                mv cast-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-claim0-persistentvolumeclaim.yaml
-                mv cast-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
-                mv cast_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-service.yaml
-                mv movie-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-db-deployment.yaml
-                mv movie-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-claim0-persistentvolumeclaim.yaml
-                mv movie-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-deployment.yaml
-                mv movie_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-service.yaml
-                mv nginx-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-claim0-persistentvolumeclaim.yaml
-                mv nginx-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-deployment.yaml
-                mv nginx-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-service.yaml
-                mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-cast-persistentvolumeclaim.yaml
-                mv postgres-data-movie-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-movie-persistentvolumeclaim.yaml
-                sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
-                sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
+                sudo mv cast-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
+                sudo mv cast-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-claim0-persistentvolumeclaim.yaml
+                sudo mv cast-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
+                sudo mv cast_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-service.yaml
+                sudo mv movie-db-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-db-deployment.yaml
+                sudo mv movie-service-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-claim0-persistentvolumeclaim.yaml
+                sudo mv movie-service-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-deployment.yaml
+                sudo mv movie_service-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/movie-service-service.yaml
+                sudo mv nginx-claim0-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-claim0-persistentvolumeclaim.yaml
+                sudo mv nginx-deployment.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-deployment.yaml
+                sudo mv nginx-service.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/nginx-service.yaml
+                sudo mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-cast-persistentvolumeclaim.yaml
+                sudo mv postgres-data-movie-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres-data-movie-persistentvolumeclaim.yaml
+                sudo sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-db-deployment.yaml
+                sudo sed -i 's/name: cast_db/name: cast-db/g' /home/ubuntu/manifestsKubernetes/my-application/templates/cast-service-deployment.yaml
                 """
             }
         }
