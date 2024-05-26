@@ -1,18 +1,15 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_COMPOSE_VERSION = '1.29.2'
         KUBE_CONFIG = '/home/ubuntu/.kube/config'
     }
-
     stages {
         stage('Cloning Git Repository') {
             steps {
                 git 'https://github.com/TanguyCarpaye/Datascientest-Jenkins'
             }
         }
-
         stage('Install Docker Compose') {
             steps {
                 script {
@@ -27,7 +24,6 @@ pipeline {
                 }
             }
         }
-
         stage('Convert Docker Compose to Kubernetes Configs') {
             steps {
                 script {
@@ -35,7 +31,6 @@ pipeline {
                 }
             }
         }
-
         stage('Move Kubernetes Configs') {
         steps {
             script {
@@ -60,7 +55,6 @@ pipeline {
             }
         }
     }
-
     stage('Test Kubectl Connectivity') {
     steps {
         script {
@@ -68,7 +62,6 @@ pipeline {
             }
         }
     }
-
     stage('Test Helm Connectivity') {
     steps {
         script {
@@ -76,13 +69,11 @@ pipeline {
             }
         }
     }
-
     stage('Set Kubectl Context') {
     steps {
         script {
-            sh '
-            kubectl config use-context default
-            '
+            sh 'sudo kubectl config use-context default'
+            sh 'kubectl config use-context default'
             }
         }
     }
