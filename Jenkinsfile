@@ -124,6 +124,7 @@ pipeline {
             sh """
             # Création d'un nouveau chart Helm pour l'application
             helm create my-application
+            find . -depth -name "*_*" -exec sh -c 'mv "$1" "$(echo "$1" | sed "s/_/-/g")"' _ {} \;
             # Copie des configurations Kubernetes dans le dossier templates du chart Helm
             cp -r /home/ubuntu/manifestsKubernetes/my-application/templates/* my-application/templates/
             """
