@@ -162,6 +162,7 @@ pipeline {
             rm -Rf .kube
             mkdir .kube
             cat $KUBECONFIG > .kube/config
+            find my-application/templates/ -type f -name '*.yaml' -exec sed -i 's/cast_service/cast-service/g' {} +
             # Déploiement de l'application en utilisant Helm
             helm upgrade --install my-release my-application --namespace dev
             """
