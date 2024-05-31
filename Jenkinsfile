@@ -58,6 +58,7 @@ pipeline {
                 # Déplacement des fichiers pour les données PostgreSQL
                 sudo mv postgres-data-cast-persistentvolumeclaim.yaml /home/ubuntu/manifestsKubernetes/my-application/templates/postgres/postgres-data-cast-persistentvolumeclaim.yaml
                 """
+                sh 'ls'
             }
         }
     }
