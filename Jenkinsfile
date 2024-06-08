@@ -39,6 +39,7 @@ pipeline {
             }
         }
 
+        /* Ce bloc est en commentaire
         
         stage('Install Docker Compose') {
             steps {
@@ -227,8 +228,9 @@ pipeline {
 //                }
 //            }
 //        }
-        
 
+        
+        /* Fin du commentaire de bloc
         
         
         
