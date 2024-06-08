@@ -10,6 +10,32 @@ pipeline {
                 git 'https://github.com/TanguyCarpaye/Datascientest-Jenkins'
             }
         }
+
+        
+        stage('Build and Push Docker Images') {
+            steps {
+            script {
+                // Construire et pousser l'image pour movie_service
+                dir('movie-service') {
+                    sh 'docker build -t my-registry/movie-service:$BUILD_NUMBER .'
+                    sh 'docker push my-registry/movie-service:$BUILD_NUMBER'
+                }
+                // Construire et pousser l'image pour cast_service
+                dir('cast-service') {
+                    sh 'docker build -t my-registry/cast-service:$BUILD_NUMBER .'
+                    sh 'docker push my-registry/cast-service:$BUILD_NUMBER'
+                }
+                // Pour nginx, l'image est déjà disponible, seulement tag et push si modification
+                dir('nginx') {
+                    sh 'docker pull nginx:latest'
+                    sh 'docker tag nginx:latest my-registry/nginx:$BUILD_NUMBER'
+                    sh 'docker push my-registry/nginx:$BUILD_NUMBER'
+                    }
+                }
+            }
+        }
+
+        
         stage('Install Docker Compose') {
             steps {
                 script {
