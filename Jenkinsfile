@@ -21,8 +21,8 @@ pipeline {
                 }
                 // Construire et pousser l'image pour movie_service
                 dir('movie-service') {
-                    sh 'docker build -t tanguycarpaye/movie-service:$BUILD_NUMBER .'
-                    sh 'sudo docker push tanguycarpaye/movie-service:$BUILD_NUMBER'
+                    sh 'docker build -t tanguycarpaye/movie-service:tagname .'
+                    sh 'sudo docker push tanguycarpaye/movie-service:tagname'
                     // sh 'docker build -t my-registry/movie-service:$BUILD_NUMBER .'
                     // sh 'sudo docker push my-registry/movie-service:$BUILD_NUMBER'
                 }
