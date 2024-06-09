@@ -17,8 +17,7 @@ pipeline {
             script {
                 // Se connecter à Docker Hub
                 withCredentials([usernamePassword(credentialsId: '4828fe9d-b6b7-4045-8561-036147dfcf52', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                     sh 'echo fjdfksxlcksd | docker login -u $DOCKER_USERNAME --password-stdin'
-                    // sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                 }
                 // Construire et pousser l'image pour movie_service
                 dir('movie-service') {
