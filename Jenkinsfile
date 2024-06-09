@@ -28,14 +28,19 @@ pipeline {
                 }
                 // Construire et pousser l'image pour cast_service
                 dir('cast-service') {
-                    sh 'docker build -t my-registry/cast-service:$BUILD_NUMBER .'
-                    sh 'sudo docker push my-registry/cast-service:$BUILD_NUMBER'
+                    sh 'docker build -t tanguycarpaye/cast-service:$BUILD_NUMBER .'
+                    sh 'sudo docker push tanguycarpaye/cast-service:$BUILD_NUMBER'
+                    // sh 'docker build -t my-registry/cast-service:$BUILD_NUMBER .'
+                    // sh 'sudo docker push my-registry/cast-service:$BUILD_NUMBER'
                 }
                 // Pour nginx, l'image est déjà disponible, seulement tag et push si modification
                 dir('nginx') {
                     sh 'docker pull nginx:latest'
-                    sh 'docker tag nginx:latest my-registry/nginx:$BUILD_NUMBER'
-                    sh 'sudo docker push my-registry/nginx:$BUILD_NUMBER'
+                    sh 'docker tag nginx:latest tanguycarpaye/nginx:$BUILD_NUMBER'
+                    sh 'sudo docker push tanguycarpaye/nginx:$BUILD_NUMBER'
+                    // sh 'docker pull nginx:latest'
+                    // sh 'docker tag nginx:latest my-registry/nginx:$BUILD_NUMBER'
+                    // sh 'sudo docker push my-registry/nginx:$BUILD_NUMBER'
                     }
                 }
             }
