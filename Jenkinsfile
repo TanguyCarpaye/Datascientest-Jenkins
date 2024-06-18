@@ -36,6 +36,9 @@ pipeline {
                 steps {
                     script {
                         dir('movie-service') {
+                            // Supprimer le conteneur existant s'il existe
+                            sh 'docker rm -f jenkins || true'
+                            // Lancer le nouveau conteneur
                             sh '''
                             docker run -d -p 80:80 --name jenkins my-registry/movie-service:$BUILD_NUMBER
                             sleep 10
