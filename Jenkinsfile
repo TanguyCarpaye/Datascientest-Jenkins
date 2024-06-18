@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                 sh '''
-                 docker rm -f jenkins
+                 // docker rm -f jenkins
                  // docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
                  docker build -t my-registry/movie-service:$BUILD_NUMBER .
                 sleep 6
