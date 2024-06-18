@@ -35,11 +35,12 @@ pipeline {
         stage('Docker run'){ // run container from our builded image
                 steps {
                     script {
-                    sh '''
-                    // docker run -d -p 80:80 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
-                    docker run -d -p 80:80 --name jenkins my-registry/movie-service:$BUILD_NUMBER
-                    sleep 10
-                    '''
+                        dir('movie-service') {
+                            sh '''
+                            docker run -d -p 80:80 --name jenkins my-registry/movie-service:$BUILD_NUMBER
+                            sleep 10
+                            '''
+                        }
                     }
                 }
             }
