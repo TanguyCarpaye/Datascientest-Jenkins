@@ -57,7 +57,6 @@ pipeline {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     }
                     sh '''
-                    docker login -u $DOCKER_ID -p $DOCKER_PASS
                     docker push my-registry/movie-service:$BUILD_NUMBER
                     '''
                     }
