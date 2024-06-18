@@ -16,7 +16,8 @@ pipeline {
                 script {
                 sh '''
                  docker rm -f jenkins
-                 docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
+                 // docker build -t $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG .
+                 docker build -t my-registry/movie-service:$BUILD_NUMBER .
                 sleep 6
                 '''
                 }
@@ -27,7 +28,8 @@ pipeline {
                 steps {
                     script {
                     sh '''
-                    docker run -d -p 80:80 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                    // docker run -d -p 80:80 --name jenkins $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
+                    docker run -d -p 80:80 --name jenkins my-registry/movie-service:$BUILD_NUMBER
                     sleep 10
                     '''
                     }
@@ -51,10 +53,13 @@ pipeline {
             }
             steps {
                 script {
-                sh '''
-                docker login -u $DOCKER_ID -p $DOCKER_PASS
-                docker push $DOCKER_ID/$DOCKER_IMAGE:$DOCKER_TAG
-                '''
+                    withCredentials([usernamePassword(credentialsId: '4828fe9d-b6b7-4045-8561-036147dfcf52', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    }
+                    sh '''
+                    docker login -u $DOCKER_ID -p $DOCKER_PASS
+                    docker push my-registry/movie-service:$BUILD_NUMBER
+                    '''
                     }
                 }
             }
