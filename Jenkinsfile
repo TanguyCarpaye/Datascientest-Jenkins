@@ -27,6 +27,7 @@ pipeline {
                         sudo docker build -t my-registry/movie-service:$BUILD_NUMBER .
                         sleep 6
                         '''
+                    }
                 }
             }
         }
