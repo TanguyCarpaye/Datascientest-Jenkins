@@ -22,10 +22,11 @@ pipeline {
         stage(' Docker Build'){ // docker build image stage
             steps {
                 script {
-                sh '''
-                 sudo docker build -t my-registry/movie-service:$BUILD_NUMBER .
-                sleep 6
-                '''
+                    dir('movie-service') {
+                        sh '''
+                        sudo docker build -t my-registry/movie-service:$BUILD_NUMBER .
+                        sleep 6
+                        '''
                 }
             }
         }
