@@ -68,7 +68,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: '4828fe9d-b6b7-4045-8561-036147dfcf52', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                    // docker push my-registry/movie-service:$BUILD_NUMBER
+                    docker build -t my-registry/movie-service:$BUILD_NUMBER .
                     docker tag my-registry/movie-service:$BUILD_NUMBER tanguycarpaye/jenkinsdevopsexams:$BUILD_NUMBER
                     docker push tanguycarpaye/jenkinsdevopsexams:$BUILD_NUMBER
                     '''
