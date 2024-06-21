@@ -69,7 +69,8 @@ pipeline {
                     sh '''
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                     // docker push my-registry/movie-service:$BUILD_NUMBER
-                    docker push tanguycarpaye/jenkinsdevopsexams:1.0
+                    docker tag my-registry/movie-service:$BUILD_NUMBER tanguycarpaye/jenkinsdevopsexams:$BUILD_NUMBER
+                    docker push tanguycarpaye/jenkinsdevopsexams:$BUILD_NUMBER
                     '''
                         }
                     }
