@@ -22,8 +22,8 @@ pipeline {
         stage('Container cleaning') {
             steps {
                 sh '''
-                docker stop movie-service || true
-                docker rm movie-service || true
+                docker ps -a | grep '8080->8080' | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                docker ps -a | grep '8080->8080' | awk '{print \$1}' | xargs --no-run-if-empty docker rm
                 '''
                 }
             }
