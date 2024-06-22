@@ -50,9 +50,6 @@ pipeline {
                     docker build -t my-registry/movie-service:movie-service .
                     docker tag my-registry/movie-service:movie-service tanguycarpaye/jenkinsdevopsexams:movie-service
                     docker push tanguycarpaye/jenkinsdevopsexams:movie-service
-                    // docker run -d -p 8081:8081 --name movie-service tanguycarpaye/jenkinsdevopsexams:movie-service
-                    // sleep 15
-                    // curl localhost:8081
                     '''
                                         }
                     dir('cast-service') {
