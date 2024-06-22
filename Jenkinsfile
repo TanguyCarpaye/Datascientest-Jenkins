@@ -18,51 +18,8 @@ pipeline {
                   }
                 }
             }
-
-        // stage(' Docker Build'){ // docker build image stage
-        //     steps {
-        //         script {
-        //             dir('movie-service') {
-        //                 sh '''
-        //                 sudo docker build -t my-registry/movie-service:$BUILD_NUMBER .
-        //                 sleep 6
-        //                 '''
-        //             }
-        //         }
-        //     }
-        // }
-        
-        // stage('Docker run'){ // run container from our builded image
-        //         steps {
-        //             script {
-        //                 dir('movie-service') {
-        //                     // Supprimer le conteneur existant s'il existe
-        //                     sh 'docker rm -f jenkins || true'
-        //                     // Lancer le nouveau conteneur
-        //                     sh '''
-        //                     docker run -d -p 80:80 --name jenkins my-registry/movie-service:$BUILD_NUMBER
-        //                     sleep 10
-        //                     '''
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        // stage('Test Acceptance'){ // we launch the curl command to validate that the container responds to the request
-        //     steps {
-        //             script {
-        //             sh '''
-        //             curl localhost
-        //             '''
-        //             }
-        //         }
-        //     }
-        
+ 
         stage('Docker Push'){ //we pass the built image to our docker hub account
-            //  environment
-            // {
-            //     DOCKER_PASS = credentials("DOCKER_HUB_PASS") // we retrieve  docker password from secret text called docker_hub_pass saved on jenkins
-            // }
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: '4828fe9d-b6b7-4045-8561-036147dfcf52', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
