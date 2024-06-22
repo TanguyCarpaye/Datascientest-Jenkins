@@ -27,10 +27,13 @@ pipeline {
                 docker ps -a | grep '8080->8080' | awk '{print \$1}' | xargs --no-run-if-empty docker rm
                 # Enlever le conteneur se nommant 'movie-service'
                 docker ps -a | grep movie-service | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                docker rm -f movie-service || true
                 # Enlever le conteneur se nommant 'cast-service'
                 docker ps -a | grep cast-service | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                docker rm -f cast-service || true
                 # Enlever le conteneur se nommant 'nginx'
                 docker ps -a | grep nginx | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                docker rm -f nginx || true
                 '''
                 }
             }
