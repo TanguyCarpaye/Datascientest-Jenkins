@@ -76,7 +76,7 @@ pipeline {
                     docker push tanguycarpaye/jenkinsdevopsexams:$BUILD_NUMBER
                     '''
                             }
-                    //    }
+                        }
                     }
                 }
             }
