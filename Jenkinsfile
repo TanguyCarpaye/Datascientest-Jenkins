@@ -72,7 +72,7 @@ pipeline {
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                     # build, tag, push movie-service
                     docker build -t my-registry/movie-service:movie-service .
-                    docker tag my-registry/movie-service:movie-serviceR tanguycarpaye/jenkinsdevopsexams:movie-service
+                    docker tag my-registry/movie-service:movie-service tanguycarpaye/jenkinsdevopsexams:movie-service
                     docker push tanguycarpaye/jenkinsdevopsexams:movie-service
                     '''
                             }
