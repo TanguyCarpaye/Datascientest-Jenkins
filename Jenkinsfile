@@ -22,8 +22,15 @@ pipeline {
         stage('Container cleaning') {
             steps {
                 sh '''
+                # Enlever les conteneur utilisant le port 8080
                 docker ps -a | grep '8080->8080' | awk '{print \$1}' | xargs --no-run-if-empty docker stop
                 docker ps -a | grep '8080->8080' | awk '{print \$1}' | xargs --no-run-if-empty docker rm
+                # Enlever le conteneur se nommant 'movie-service'
+                docker ps -a | grep movie-service | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                # Enlever le conteneur se nommant 'cast-service'
+                docker ps -a | grep cast-service | awk '{print \$1}' | xargs --no-run-if-empty docker stop
+                # Enlever le conteneur se nommant 'nginx'
+                docker ps -a | grep nginx | awk '{print \$1}' | xargs --no-run-if-empty docker stop
                 '''
                 }
             }
