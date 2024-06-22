@@ -80,10 +80,20 @@ pipeline {
                     sh '''
                     # DockerHub connection
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                    # movie-service
+                    # cast-service
                     docker build -t my-registry/movie-service:cast-service .
                     docker tag my-registry/movie-service:cast-service tanguycarpaye/jenkinsdevopsexams:cast-service
                     docker push tanguycarpaye/jenkinsdevopsexams:cast-service
+                    '''
+                                        }
+                    dir('nginx') {
+                    sh '''
+                    # DockerHub connection
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    # nginx
+                    docker build -t my-registry/movie-service:nginx .
+                    docker tag my-registry/movie-service:nginx tanguycarpaye/jenkinsdevopsexams:nginx
+                    docker push tanguycarpaye/jenkinsdevopsexams:nginx
                     '''
                                         }
                         }
