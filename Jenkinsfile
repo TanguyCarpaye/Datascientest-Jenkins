@@ -18,7 +18,16 @@ pipeline {
                   }
                 }
             }
- 
+
+        stage('Container cleaning') {
+            steps {
+                sh '''
+                docker stop movie-service || true
+                docker rm movie-service || true
+                '''
+                }
+            }
+        
         stage('Docker Push'){ //we pass the built image to our docker hub account
             steps {
                 script {
