@@ -70,12 +70,22 @@ pipeline {
                     sh '''
                     # DockerHub connection
                     echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                    # build, tag, push movie-service
+                    # movie-service
                     docker build -t my-registry/movie-service:movie-service .
                     docker tag my-registry/movie-service:movie-service tanguycarpaye/jenkinsdevopsexams:movie-service
                     docker push tanguycarpaye/jenkinsdevopsexams:movie-service
                     '''
-                            }
+                                        }
+                    dir('cast-service') {
+                    sh '''
+                    # DockerHub connection
+                    echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                    # movie-service
+                    docker build -t my-registry/movie-service:cast-service .
+                    docker tag my-registry/movie-service:cast-service tanguycarpaye/jenkinsdevopsexams:cast-service
+                    docker push tanguycarpaye/jenkinsdevopsexams:cast-service
+                    '''
+                                        }
                         }
                     }
                 }
