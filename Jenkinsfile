@@ -141,8 +141,8 @@ pipeline {
         //         sh 'mv nginx_config.conf nginx-config.conf'
         //         sh 'ls'
         //         }
-        //     }
-    //     }
+        //       }
+        //   }
         
     stage('Test Kubectl Connectivity') {
     steps {
