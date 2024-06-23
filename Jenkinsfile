@@ -115,6 +115,7 @@ pipeline {
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_db/movie-db/g" {} +'
                     // Supposer qu'une structure de base pour les charts est déjà présente
                     sh '''
+                    sudo apt-get install tree
                     tree
                     cp -r helm_templates/movie-app helm/movie-app/
                     mv k8s/movie_service-deployment.yaml helm/movie-app/templates/
