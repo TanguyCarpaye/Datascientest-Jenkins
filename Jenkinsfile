@@ -113,6 +113,15 @@ pipeline {
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_service/movie-service/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/cast_db/cast-db/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_db/movie-db/g" {} +'
+                    // Supposer qu'une structure de base pour les charts est déjà présente
+                    sh '''
+                    cp -r helm_templates/movie-app helm/movie-app/
+                    mv k8s/movie_service-deployment.yaml helm/movie-app/templates/
+                    mv k8s/movie_service-service.yaml helm/movie-app/templates/
+                    cp -r helm_templates/cast-app helm/cast-app/
+                    mv k8s/cast_service-deployment.yaml helm/cast-app/templates/
+                    mv k8s/cast_service-service.yaml helm/cast-app/templates/
+                    '''
                     // Appliquer les configurations modifiées aux environnements spécifiques
                     sh 'kubectl apply -f k8s/ --namespace=dev'
                     sh 'kubectl apply -f k8s/ --namespace=qa'
