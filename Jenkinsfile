@@ -77,11 +77,6 @@ pipeline {
                 }
             }
 
-
-
-        
-
-        
         
         stage('Install Docker Compose') {
             steps {
@@ -97,6 +92,8 @@ pipeline {
                 }
             }
         }
+
+        
         stage('Convert Docker Compose to Kubernetes Configs') {
             steps {
                 script {
