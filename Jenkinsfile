@@ -94,6 +94,18 @@ pipeline {
         }
 
 
+        stage('Test Kubectl and Helm Connectivity') {
+            steps {
+                script {
+                sh 'kubectl version'
+                sh 'kubectl get nodes'
+                sh 'kubectl cluster-info'
+                sh 'helm version'
+                        }
+                    }
+                }
+        
+
         stage('Setup Kubernetes Namespaces') {
             steps {
             script {
@@ -178,25 +190,8 @@ pipeline {
         //       }
         //   }
         
-    stage('Test Kubectl Connectivity') {
-    steps {
-        script {
-            sh 'kubectl version'
-            sh 'kubectl get nodes'
-            sh 'kubectl cluster-info'
-            sh 'touch test.txt'
-            }
-        }
-    }
 
-    stage('Test Helm Connectivity') {
-    steps {
-        script {
-            sh 'helm version'
-            sh 'ls'
-            }
-        }
-    }
+
     
 //    stage('Deploy to Kubernetes with Helm') {
 //        environment
