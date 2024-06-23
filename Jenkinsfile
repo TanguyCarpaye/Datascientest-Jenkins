@@ -93,6 +93,18 @@ pipeline {
             }
         }
 
+
+        stage('Deploy to Kubernetes') {
+        steps {
+            script {
+                sh 'kompose convert -f docker-compose.yml -o k8s/'
+                sh 'kubectl apply -f k8s/ --namespace=dev'
+                sh 'kubectl apply -f k8s/ --namespace=qa'
+                sh 'kubectl apply -f k8s/ --namespace=staging'
+                }
+            }
+        }
+        
         
         // stage('Convert Docker Compose to Kubernetes Configs') {
         //     steps {
