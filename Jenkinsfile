@@ -113,7 +113,7 @@ pipeline {
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_service/movie-service/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/cast_db/cast-db/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_db/movie-db/g" {} +'
-                    // Supposer qu'une structure de base pour les charts est déjà présente
+                    // charts helm
                     sh '''
                     sudo apt-get install tree
                     tree
