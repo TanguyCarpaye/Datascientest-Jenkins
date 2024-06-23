@@ -94,6 +94,22 @@ pipeline {
         }
 
 
+        stage('Setup Kubernetes Namespaces') {
+            steps {
+            script {
+                // Créer le namespace 'dev' s'il n'existe pas
+                sh 'kubectl get ns dev || kubectl create namespace dev'
+                // Créer le namespace 'qa' s'il n'existe pas
+                sh 'kubectl get ns qa || kubectl create namespace qa'
+                // Créer le namespace 'staging' s'il n'existe pas
+                sh 'kubectl get ns staging || kubectl create namespace staging'
+                // Créer le namespace 'prod' s'il n'existe pas
+                sh 'kubectl get ns prod || kubectl create namespace prod'
+                }
+            }
+        }
+
+        
         stage('Deploy to Kubernetes') {
             steps {
                 script {
