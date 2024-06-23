@@ -95,16 +95,22 @@ pipeline {
 
 
         stage('Deploy to Kubernetes') {
-        steps {
-            script {
-                sh 'kompose convert -f docker-compose.yml -o k8s/'
-                sh 'kubectl apply -f k8s/ --namespace=dev'
-                sh 'kubectl apply -f k8s/ --namespace=qa'
-                sh 'kubectl apply -f k8s/ --namespace=staging'
+            steps {
+                script {
+                    sh 'kompose convert -f docker-compose.yml -o k8s/'
+                    // Renommer les services et les déploiements pour respecter les conventions Kubernetes
+                    sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/cast_service/cast-service/g" {} +'
+                    sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_service/movie-service/g" {} +'
+                    sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/cast_db/cast-db/g" {} +'
+                    sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_db/movie-db/g" {} +'
+                    // Appliquer les configurations modifiées aux environnements spécifiques
+                    sh 'kubectl apply -f k8s/ --namespace=dev'
+                    sh 'kubectl apply -f k8s/ --namespace=qa'
+                    sh 'kubectl apply -f k8s/ --namespace=staging'
                 }
             }
         }
-        
+
         
         // stage('Convert Docker Compose to Kubernetes Configs') {
         //     steps {
