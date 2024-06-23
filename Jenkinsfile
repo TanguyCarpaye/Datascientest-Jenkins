@@ -147,25 +147,26 @@ pipeline {
         }
     }
         
-//    stage('Test Kubectl Connectivity') {
-//    steps {
-//        script {
-//            sh 'kubectl version'
-//            sh 'kubectl get nodes'
-//            sh 'kubectl cluster-info'
-//            sh 'kubectl cluster-info dump'
-//            sh 'touch test.txt'
-//            }
-//        }
-//    }
-//    stage('Test Helm Connectivity') {
-//    steps {
-//        script {
-//            sh 'helm version'
-//            sh 'ls'
-//            }
-//        }
-//    }
+    stage('Test Kubectl Connectivity') {
+    steps {
+        script {
+            sh 'kubectl version'
+            sh 'kubectl get nodes'
+            sh 'kubectl cluster-info'
+            sh 'kubectl cluster-info dump'
+            sh 'touch test.txt'
+            }
+        }
+    }
+
+    stage('Test Helm Connectivity') {
+    steps {
+        script {
+            sh 'helm version'
+            sh 'ls'
+            }
+        }
+    }
     
 //    stage('Deploy to Kubernetes with Helm') {
 //        environment
