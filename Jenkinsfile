@@ -156,11 +156,11 @@ pipeline {
             when {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
-            environment {
+            #environment {
                 // Définir les variables d'environnement nécessaires pour le déploiement
-                DISABLE_AUTH = 'true'
-                DB_ENGINE = 'sqlite'
-            }
+            #    DISABLE_AUTH = 'true'
+            #    DB_ENGINE = 'sqlite'
+            #}
             steps {
                 // Demander la confirmation pour le déploiement en production
                 input 'Deploy to Production? Are you sure you want to deploy to production?'
