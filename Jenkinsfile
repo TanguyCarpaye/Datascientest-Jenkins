@@ -132,18 +132,7 @@ pipeline {
                     mv k8s/*.yaml my-application/templates/
                     # Vérification
                     ls k8s/
-                    #sudo cat my-application/Chart.yaml
-                    #cat my-application/values.yaml
-                    #cat my-application/cast/cast-db-deployment.yaml
-                    #cat my-application/movie/movie-db-deployment.yaml
-                    #cat my-application/nginx/nginx-deployment.yaml
-                    # Déplacement des Charts Helm
-                    #cp -r helm_templates/movie-app helm/movie-app/
-                    #mv k8s/movie_service-deployment.yaml helm/movie-app/templates/
-                    #mv k8s/movie_service-service.yaml helm/movie-app/templates/
-                    #cp -r helm_templates/cast-app helm/cast-app/
-                    #mv k8s/cast_service-deployment.yaml helm/cast-app/templates/
-                    #mv k8s/cast_service-service.yaml helm/cast-app/templates/
+                    ls my-application/templates/
                     '''
                 }
             }
