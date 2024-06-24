@@ -161,6 +161,10 @@ pipeline {
                 DB_ENGINE = 'sqlite'
             }
             steps {
+                script {
+                    // Afficher la branche à partir de laquelle le déploiement est effectué
+                    echo "Deploying from branch: ${env.GIT_BRANCH}"
+                }
                 // Demander la confirmation pour le déploiement en production
                 input 'Deploy to Production? Are you sure you want to deploy to production?'
 
