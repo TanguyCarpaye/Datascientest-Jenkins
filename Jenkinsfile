@@ -141,7 +141,7 @@ pipeline {
         }
         
         
-         stage('Build') {
+         stage('Print environment') {
             environment {
                 DISABLE_AUTH = 'true'
                 DB_ENGINE = 'sqlite'
@@ -173,19 +173,19 @@ pipeline {
         }
         
         
-        stage('Manual Deployment to Production') {
-            when {
-                branch 'master'
-                 }
-            steps {
-                input 'Deploy to Production?'
-                script {
-                    sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
-                       }
-                  }
-         }
+        #stage('Manual Deployment to Production') {
+        #    when {
+        #       branch 'master'
+        #         }
+        #    steps {
+        #        input 'Deploy to Production?'
+        #        script {
+        #            sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
+        #               }
+        #          }
+        # }
         
-
+        
         
         // stage('Convert Docker Compose to Kubernetes Configs') {
         //     steps {
