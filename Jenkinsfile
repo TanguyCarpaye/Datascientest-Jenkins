@@ -128,14 +128,14 @@ pipeline {
                     sh '''
                     sudo apt-get install tree
                     tree
-                    // Vérification
+                    # Vérification
                     ls
                     sudo cat my-application/Chart.yaml
                     cat my-application/values.yaml
                     cat my-application/cast/cast-db-deployment.yaml
                     cat my-application/movie/movie-db-deployment.yaml
                     cat my-application/nginx/nginx-deployment.yaml
-                    // Déplacement des Charts Helm
+                    # Déplacement des Charts Helm
                     cp -r helm_templates/movie-app helm/movie-app/
                     mv k8s/movie_service-deployment.yaml helm/movie-app/templates/
                     mv k8s/movie_service-service.yaml helm/movie-app/templates/
