@@ -128,7 +128,7 @@ pipeline {
                     sh '''
                     sudo apt-get install tree
                     tree
-                    # Déplacer tous les fichiers créés par Kompose dans le dossier /k8s
+                    # Déplacer tous les fichiers créés par Kompose vers le dossier my-application/templates/
                     mv k8s/*.yaml my-application/templates/
                     # Vérification
                     ls k8s/
