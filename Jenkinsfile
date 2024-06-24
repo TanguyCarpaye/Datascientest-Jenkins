@@ -125,7 +125,7 @@ pipeline {
         stage('Charts Helm') {
             steps {
                 script {
-                    sh '''
+                    sh """
                     sudo apt-get install tree
                     tree
                     # Déplacer tous les fichiers créés par Kompose vers le dossier my-application/templates/
@@ -135,7 +135,7 @@ pipeline {
                     ls my-application/templates/
                     # Vérification de la branche
                     echo "Running on branch: ${env.BRANCH_NAME}"
-                    '''
+                    """
                 }
             }
         }
