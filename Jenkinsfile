@@ -172,17 +172,17 @@ pipeline {
         }
         
         
-        #stage('Manual Deployment to Production') {
-        #    when {
-        #       branch 'master'
-        #         }
-        #    steps {
-        #        input 'Deploy to Production?'
-        #        script {
-        #            sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
-        #               }
-        #          }
-        # }
+        // stage('Manual Deployment to Production') {
+        //     when {
+        //        branch 'master'
+        //          }
+        //     steps {
+        //         input 'Deploy to Production?'
+        //         script {
+        //             sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
+        //                }
+        //           }
+        //  }
         
         
         
