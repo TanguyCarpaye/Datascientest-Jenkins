@@ -129,6 +129,7 @@ pipeline {
                     sudo apt-get install tree
                     tree
                     // Vérification
+                    ls
                     sudo cat my-application/Chart.yaml
                     cat my-application/values.yaml
                     cat my-application/cast/cast-db-deployment.yaml
