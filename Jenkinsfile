@@ -131,7 +131,7 @@ pipeline {
                     # Déplacer tous les fichiers créés par Kompose dans le dossier /k8s
                     mv k8s/*.yaml my-application/templates/
                     # Vérification
-                    ls k8/
+                    ls k8s/
                     #sudo cat my-application/Chart.yaml
                     #cat my-application/values.yaml
                     #cat my-application/cast/cast-db-deployment.yaml
