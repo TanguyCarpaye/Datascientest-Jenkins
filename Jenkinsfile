@@ -141,6 +141,17 @@ pipeline {
         }
         
         
+         stage('Build') {
+            environment {
+                DISABLE_AUTH = 'true'
+                DB_ENGINE = 'sqlite'
+                        }
+            steps {
+                sh 'printenv'
+                  }
+         }
+        
+        
         stage('Manual Deployment to Production') {
             when {
                 branch 'master'
