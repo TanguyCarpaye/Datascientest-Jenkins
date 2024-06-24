@@ -113,7 +113,18 @@ pipeline {
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_service/movie-service/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/cast_db/cast-db/g" {} +'
                     sh 'find k8s/ -type f -name "*.yaml" -exec sed -i "s/movie_db/movie-db/g" {} +'
-                    // charts helm
+                    // Appliquer les configurations modifiées aux environnements spécifiques
+                    sh 'kubectl apply -f k8s/ --namespace=dev'
+                    sh 'kubectl apply -f k8s/ --namespace=qa'
+                    sh 'kubectl apply -f k8s/ --namespace=staging'
+                }
+            }
+        }
+        
+        
+        stage('Charts Helm') {
+            steps {
+                script {
                     sh '''
                     sudo apt-get install tree
                     tree
@@ -124,14 +135,10 @@ pipeline {
                     mv k8s/cast_service-deployment.yaml helm/cast-app/templates/
                     mv k8s/cast_service-service.yaml helm/cast-app/templates/
                     '''
-                    // Appliquer les configurations modifiées aux environnements spécifiques
-                    sh 'kubectl apply -f k8s/ --namespace=dev'
-                    sh 'kubectl apply -f k8s/ --namespace=qa'
-                    sh 'kubectl apply -f k8s/ --namespace=staging'
                 }
             }
         }
-
+        
         
         stage('Manual Deployment to Production') {
             when {
