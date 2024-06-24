@@ -157,7 +157,6 @@ pipeline {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
             #environment {
-                // Définir les variables d'environnement nécessaires pour le déploiement
             #    DISABLE_AUTH = 'true'
             #    DB_ENGINE = 'sqlite'
             #}
