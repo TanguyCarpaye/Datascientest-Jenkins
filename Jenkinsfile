@@ -130,9 +130,11 @@ pipeline {
                     tree
                     # Déplacer tous les fichiers créés par Kompose vers le dossier my-application/templates/
                     mv k8s/*.yaml my-application/templates/
-                    # Vérification
+                    # Vérification du déplacement des fichiers
                     ls k8s/
                     ls my-application/templates/
+                    # Vérification de la branche
+                    echo "Running on branch: ${env.BRANCH_NAME}"
                     '''
                 }
             }
