@@ -170,6 +170,7 @@ pipeline {
 
                 script {
                     // Exécuter la commande Helm pour déployer l'application en production
+                    sh 'ls'
                     sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
                 }
             }
