@@ -133,8 +133,6 @@ pipeline {
                     # Vérification du déplacement des fichiers
                     ls k8s/
                     ls my-application/templates/
-                    # Vérification de la branche
-                    echo "Running on branch: ${env.BRANCH_NAME}"
                     """
                 }
             }
@@ -184,7 +182,7 @@ pipeline {
         //     steps {
         //         input 'Deploy to Production?'
         //         script {
-        //             sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
+                       sh 'kubectl apply -f k8s/ --namespace=prod'
         //                }
         //           }
         //  }
