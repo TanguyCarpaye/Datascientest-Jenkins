@@ -175,17 +175,6 @@ pipeline {
         }
         
         
-        // stage('Manual Deployment to Production') {
-        //     when {
-        //        branch 'master'
-        //          }
-        //     steps {
-        //         input 'Deploy to Production?'
-        //         script {
-                       sh 'kubectl apply -f k8s/ --namespace=prod'
-        //                }
-        //           }
-        //  }
         
         
         
