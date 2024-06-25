@@ -129,7 +129,7 @@ pipeline {
                     sudo apt-get install tree
                     tree
                     # Déplacer tous les fichiers créés par Kompose vers le dossier my-application/templates/
-                    mv k8s/*.yaml my-application/templates/
+                    cp k8s/*.yaml my-application/templates/
                     # Vérification du déplacement des fichiers
                     ls k8s/
                     ls my-application/templates/
@@ -171,6 +171,7 @@ pipeline {
                 script {
                     // Exécuter la commande Helm pour déployer l'application en production
                     sh 'ls'
+                    sh 'helm upgrade --install movie-app helm/movie-app/ --namespace prod'
                 }
             }
         }
