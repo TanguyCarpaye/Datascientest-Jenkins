@@ -168,7 +168,6 @@ pipeline {
 
                 script {
                     // Exécuter la commande Helm pour déployer l'application en production
-                    sh 'ls'
                     sh 'kubectl apply -f k8s/ --namespace=prod'
                 }
             }
