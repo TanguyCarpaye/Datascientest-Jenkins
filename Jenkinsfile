@@ -173,12 +173,13 @@ pipeline {
                     echo "Deploying from branch: ${env.GIT_BRANCH}"
                 }
                 // Demander la confirmation pour le déploiement en production
-                input 'Deploy to Production? Are you sure you want to deploy to production?'
-
+                input(message: 'Continue with the next step?', timeout: 40, timeoutMessage: 'Input timed out.')
                 script {
-                    echo "Test echo after input"
+                    sh """
+                    echo 'Test echo after input'
                     // Exécuter la commande Helm pour déployer l'application en production
-                    sh 'kubectl apply -f k8s/ --namespace=prod'
+                    kubectl apply -f k8s/ --namespace=prod
+                    """
                 }
             }
         }
