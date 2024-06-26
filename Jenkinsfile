@@ -148,9 +148,18 @@ pipeline {
                 sh 'printenv'
                   }
          }
+
+
+        stage('Deploy to Production V1') {
+            steps {
+                script {
+                    sh 'kubectl apply -f k8s/ --namespace=prod'
+                }
+            }
+        }
         
         
-        stage('Deploy to Production') {
+        stage('Deploy to Production V2') {
             when {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
