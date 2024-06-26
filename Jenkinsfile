@@ -177,7 +177,7 @@ pipeline {
                 script {
                     sh """
                     echo 'Test echo after input'
-                    // Exécuter la commande Helm pour déployer l'application en production
+                    # Exécuter la commande Helm pour déployer l'application en production
                     kubectl apply -f k8s/ --namespace=prod
                     """
                 }
