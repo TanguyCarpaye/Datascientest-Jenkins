@@ -173,7 +173,7 @@ pipeline {
                     echo "Deploying from branch: ${env.GIT_BRANCH}"
                 }
                 // Demander la confirmation pour le déploiement en production
-                input(message: 'Continue with the next step?', timeout: 40, timeoutMessage: 'Input timed out.')
+                input 'Continue with the next step?'
                 script {
                     sh 'kubectl apply -f k8s/ --namespace=prod'
                 }
