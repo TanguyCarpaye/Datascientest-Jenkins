@@ -150,16 +150,7 @@ pipeline {
          }
         
         
-        // stage('Deploy to Production V1') {
-        //     steps {
-        //         script {
-        //             sh 'kubectl apply -f k8s/ --namespace=prod'
-        //         }
-        //     }
-        // }
-        
-        
-        stage('Deploy to Production V2a') {
+        stage('Deploy to Production A') {
             when {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
@@ -179,7 +170,7 @@ pipeline {
               }
           }
 
-        stage('Deploy to Production V2b') {
+        stage('Deploy to Production B') {
             steps {
                 sh 'kubectl apply -f k8s/ --namespace=prod'
             }
