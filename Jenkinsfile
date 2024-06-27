@@ -148,18 +148,18 @@ pipeline {
                 sh 'printenv'
                   }
          }
-
-
-        stage('Deploy to Production V1') {
-            steps {
-                script {
-                    sh 'kubectl apply -f k8s/ --namespace=prod'
-                }
-            }
-        }
         
         
-        stage('Deploy to Production V2') {
+        // stage('Deploy to Production V1') {
+        //     steps {
+        //         script {
+        //             sh 'kubectl apply -f k8s/ --namespace=prod'
+        //         }
+        //     }
+        // }
+        
+        
+        stage('Deploy to Production V2a') {
             when {
                 expression { env.GIT_BRANCH == 'origin/master' }
             }
@@ -172,13 +172,13 @@ pipeline {
                     // Afficher la branche à partir de laquelle le déploiement est effectué
                     echo "Deploying from branch: ${env.GIT_BRANCH}"
                 }
-                // Demander la confirmation pour le déploiement en production
-                // Essayer d'ajouter un autre step, parce que selon la doc jenkins, avec input si tu cliques sur Proceed tu passes au prochain 'Step'
-                # lien vers la doc: https://www.jenkins.io/doc/pipeline/steps/pipeline-input-step/
                 input 'Continue with the next step?'
-                script {
-                    sh 'kubectl apply -f k8s/ --namespace=prod'
-                }
+              }
+          }
+
+        stage('Deploy to Production V2b') {
+            steps {
+                sh 'kubectl apply -f k8s/ --namespace=prod'
             }
         }
         
