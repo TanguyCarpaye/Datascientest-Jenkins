@@ -171,8 +171,11 @@ pipeline {
                 script {
                     // Afficher la branche à partir de laquelle le déploiement est effectué
                     echo "Deploying from branch: ${env.GIT_BRANCH}"
+                    def userInput = input(id: 'confirm', message: 'Continue with the next step?', parameters: [booleanParam(defaultValue: true, description: 'Click OK to continue', name: 'Confirm')])
+                    if (!userInput) {
+                        error("Deployment stopped by the user.")
+                    }
                 }
-                input 'Continue with the next step?'
               }
           }
 
